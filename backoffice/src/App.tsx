@@ -9,23 +9,36 @@ import Pacientes from "./pages/Pacientes";
 import Tratamientos from "./pages/Tratamientos";
 import ProductosAplicados from "./pages/ProductosAplicados";
 import Candidaturas from "./pages/Candidaturas";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App: React.FC = () => {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/users" element={<Users />} />
-          <Route path="/consultas" element={<Consultas />} />
-          <Route path="/clientes" element={<Clientes />} />
-          <Route path="/pacientes" element={<Pacientes />} />
-          <Route path="/tratamientos" element={<Tratamientos />} />
-          <Route path="/productos-aplicados" element={<ProductosAplicados />} />
-          <Route path="/candidaturas" element={<Candidaturas />} />
-          <Route path="/" element={<Users />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <Layout>
+                <Routes>
+                  <Route path="/users" element={<Users />} />
+                  <Route path="/consultas" element={<Consultas />} />
+                  <Route path="/clientes" element={<Clientes />} />
+                  <Route path="/pacientes" element={<Pacientes />} />
+                  <Route path="/tratamientos" element={<Tratamientos />} />
+                  <Route
+                    path="/productos-aplicados"
+                    element={<ProductosAplicados />}
+                  />
+                  <Route path="/candidaturas" element={<Candidaturas />} />
+                  <Route index element={<Users />} />
+                </Routes>
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
     </Router>
   );
 };
