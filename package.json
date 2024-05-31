@@ -1,0 +1,11 @@
+{
+    "name": "root",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "cd backend && npm start"
+    },
+    "engines": {
+        "node": ">=14.0.0",
+        "npm": ">=6.0.0"
+    }
+}
